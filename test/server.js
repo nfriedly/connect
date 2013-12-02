@@ -89,4 +89,11 @@ describe('app', function(){
     .get('/foo/<script>stuff</script>')
     .expect('Cannot GET /foo/&lt;script&gt;stuff&lt;/script&gt;', done);
   })
+  
+  it('should allow the server to be killed gracefully', function(done){
+    var app = connect();
+    app.listen(function() {
+      app.close(done);
+    });
+  });
 })
